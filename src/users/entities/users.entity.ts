@@ -2,7 +2,10 @@ import { Table, Column, Model } from 'sequelize-typescript';
 
 @Table
 export class User extends Model {
-  @Column
+  @Column({
+    unique: true,
+    allowNull: false,
+  })
   username: string;
 
   @Column
@@ -11,7 +14,13 @@ export class User extends Model {
   @Column
   lastName: string;
 
-  @Column
+  @Column({
+    unique: true,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+    },
+  })
   email: string;
 
   @Column
